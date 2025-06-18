@@ -128,7 +128,6 @@ export default function UpdateListing({
       });
       onFinish?.();
     } catch (error) {
-      console.error("Delete error:", error);
       toast(t("error"), {
         description: t("propertyDeleteFailed"),
       });
@@ -219,7 +218,6 @@ export default function UpdateListing({
       }
       onFinish?.();
     } catch (error) {
-      console.error("Error:", error);
       toast(t("error"), {
         description: t("propertySaveFailed"),
       });
@@ -497,26 +495,8 @@ export default function UpdateListing({
           <CardDescription>{t("facilitiesDescription")}</CardDescription>
         </CardHeader>
         <CardContent>
-          {/* <div className="flex flex-wrap gap-4">
-            {FACILITY_OPTIONS.map((facility) => (
-              <label
-                key={facility}
-                className="flex items-center space-x-2 text-sm cursor-pointer select-none"
-              >
-                <input
-                  type="checkbox"
-                  checked={form.facilities.includes(facility)}
-                  onChange={() => handleFacilityChange(facility)}
-                  className="cursor-pointer"
-                />
-                <span>{t(facility)}</span>
-              </label>
-            ))}
-          </div> */}
           <div className="flex flex-wrap gap-4">
             {FACILITY_OPTIONS.map((facility) => {
-              console.log(facility);
-              console.log(normalizeFacilityKey(facility));
               return (
                 <label
                   key={facility}

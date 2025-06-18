@@ -10,7 +10,7 @@ import { useUserStore } from "@/store/userStore";
 import { useTranslation } from "react-i18next";
 import { Eye, EyeOff } from "lucide-react";
 
-export default function LoginForm() {
+export default function LogInForm() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");

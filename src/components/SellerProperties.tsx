@@ -36,11 +36,9 @@ export default function SellerProperties({ userId }: SellerPropertiesProps) {
     setError(null);
     fetchUserById(userId)
       .then((res) => {
-        console.log("API Response:", res.data);
         setUser(res.data);
       })
-      .catch((err) => {
-        console.error("Error during user loading:", err);
+      .catch(() => {
         setError("Failed to load properties. Please try again later.");
       })
       .finally(() => setLoading(false));
@@ -66,8 +64,6 @@ export default function SellerProperties({ userId }: SellerPropertiesProps) {
       (property: Property) =>
         property.transactionType === "sale" && property.status === "active",
     ) || [];
-
-  console.log(user?.properties[0].status);
 
   if (loading) {
     return (

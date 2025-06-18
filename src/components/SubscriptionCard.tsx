@@ -41,7 +41,6 @@ export default function SubscriptionCard({ userId }: SubscriptionCardProps) {
         setSubscription(subscriptionResponse.data.subscriptions[0]);
       } catch (error) {
         toast.error(t("failedToFetchData"));
-        console.error("Fetch data error:", error);
       }
     };
 
@@ -94,7 +93,6 @@ export default function SubscriptionCard({ userId }: SubscriptionCardProps) {
       return response.data.id;
     } catch (error) {
       toast.error(t("failedToCreateOrder"));
-      console.error("Create order error:", error);
       throw error;
     }
   };
@@ -119,12 +117,10 @@ export default function SubscriptionCard({ userId }: SubscriptionCardProps) {
       navigate({ to: "/complete-subscription" });
     } catch (error) {
       toast.error(t("failedToCapturePayment"));
-      console.error("Capture payment error:", error);
     }
   };
 
-  const handleError = (error: unknown) => {
-    console.error("PayPal error:", error);
+  const handleError = () => {
     toast.error(t("failedToCapturePayment"));
     navigate({ to: "/cancel-subscription" });
   };

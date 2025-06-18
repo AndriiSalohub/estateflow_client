@@ -161,7 +161,6 @@ export default function AddListing({ ownerId }: { ownerId: string }) {
       toast(t("error"), {
         description: t("listingCreationFailed"),
       });
-      console.error("Error while creating listing:", error);
     } finally {
       setLoading(false);
     }

@@ -27,6 +27,7 @@ import {
 import { toast } from "sonner";
 import { usePropertiesStore } from "@/store/propertiesStore";
 import { useTranslation } from "react-i18next";
+import Skeleton from "./Skeleton";
 
 interface ActionLoading {
   [key: string]: boolean;
@@ -56,7 +57,6 @@ export default function PropertyManagement() {
       toast(t("error"), {
         description: t("propertyVerifyFailed"),
       });
-      console.error("Error verifying property:", error);
     } finally {
       setActionLoading((prev) => ({
         ...prev,
@@ -77,7 +77,6 @@ export default function PropertyManagement() {
       toast(t("error"), {
         description: error || t("propertyDeleteFailed"),
       });
-      console.error("Error deleting property:", error);
     } finally {
       setActionLoading((prev) => ({
         ...prev,
@@ -128,29 +127,7 @@ export default function PropertyManagement() {
   }, [error]);
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-background p-4 sm:p-6 lg:p-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="animate-pulse space-y-6">
-            <div className="h-8 bg-muted rounded w-1/3"></div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div
-                  key={i}
-                  className="bg-card rounded-lg border p-4 space-y-4"
-                >
-                  <div className="h-40 bg-muted rounded"></div>
-                  <div className="space-y-2">
-                    <div className="h-4 bg-muted rounded w-3/4"></div>
-                    <div className="h-3 bg-muted rounded w-1/2"></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+    return <Skeleton />;
   }
 
   return (

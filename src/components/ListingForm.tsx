@@ -31,6 +31,7 @@ export default function ListingForm({ propertyId }: { propertyId: string }) {
 
   const [activeImage, setActiveImage] = useState("");
   const [showShareOptions, setShowShareOptions] = useState(false);
+  const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
     fetchById(propertyId);
@@ -97,6 +98,10 @@ export default function ListingForm({ propertyId }: { propertyId: string }) {
   const isWished = wishlist.some((p) => p.id === propertyId);
 
   const handleToggleWishlist = () => {
+    if (isAdding) {
+      return;
+    }
+
     if (!isAuthenticated) {
       toast.error(t("loginRequired"), { description: t("loginPrompt") });
       return;
@@ -109,7 +114,21 @@ export default function ListingForm({ propertyId }: { propertyId: string }) {
       return;
     }
 
-    isWished ? removeProperty(propertyId) : addProperty(propertyId);
+    if (isWished) {
+      removeProperty(propertyId);
+      return;
+    }
+
+    setIsAdding(true);
+    addProperty(propertyId)
+      .then(() => setIsAdding(false))
+      .catch((err) => {
+        setIsAdding(false);
+
+        if (err?.response?.status !== 409) {
+          toast.error(t("failedToAddWishlist"));
+        }
+      });
   };
 
   const facilities =
@@ -163,7 +182,7 @@ export default function ListingForm({ propertyId }: { propertyId: string }) {
         return;
       }
 
-      const response = await $api.post(
+      await $api.post(
         `${import.meta.env.VITE_API_URL}/api/paypal/capture-order`,
         {
           orderId: data?.orderID,
@@ -171,17 +190,14 @@ export default function ListingForm({ propertyId }: { propertyId: string }) {
           email: user?.email,
         },
       );
-      console.log(response);
       toast.success(t("success"), { description: t("paymentSuccessful") });
       navigate({ to: "/complete-payment" });
     } catch (error) {
       toast.error(t("failedToCapturePayment"));
-      console.error(error);
     }
   };
 
-  const onError = async (data: any) => {
-    console.log(data);
+  const onError = async () => {
     toast.error(t("failedToCapturePayment"));
     navigate({ to: "/cancel-payment" });
   };
@@ -207,7 +223,6 @@ export default function ListingForm({ propertyId }: { propertyId: string }) {
         await navigator.share(shareData);
         setShowShareOptions(false);
       } catch (err) {
-        console.error("Sharing failed:", err);
         toast.error(t("copyLinkFailed"));
       }
     } else {
@@ -216,7 +231,7 @@ export default function ListingForm({ propertyId }: { propertyId: string }) {
         toast.success(t("success"), { description: t("linkCopied") });
         setShowShareOptions(false);
       } catch (err) {
-        console.error("Copying failed:", err);
+        console.log("Copying failed:", err);
       }
     }
   };
@@ -242,7 +257,7 @@ export default function ListingForm({ propertyId }: { propertyId: string }) {
       <div className="grid md:grid-cols-2 gap-6">
         <div className="flex flex-col gap-2 relative">
           <img
-            src={activeImage}
+            src={activeImage || "/path"}
             alt={selectedProperty.title}
             className="w-full h-[400px] rounded-2xl object-cover"
           />
@@ -404,16 +419,12 @@ export default function ListingForm({ propertyId }: { propertyId: string }) {
             allowFullScreen
             referrerPolicy="no-referrer-when-downgrade"
             src={`https://maps.google.com/maps?q=${encodeURIComponent(selectedProperty.address)}&z=15&output=embed`}
+            onError={() => console.log("Map failed to load")}
           ></iframe>
         </div>
 
         <div>
           <h2 className="text-lg font-semibold mb-2">{t("facilities")}:</h2>
-          {/* <ul className="grid grid-cols-2 gap-1 text-sm text-muted-foreground">
-            {facilities.map((facility) => (
-              <li key={facility}>• {facility}</li>
-            ))}
-          </ul> */}
           <ul className="grid grid-cols-2 gap-1 text-sm text-muted-foreground">
             {facilities.map((facility) => (
               <li key={facility}>

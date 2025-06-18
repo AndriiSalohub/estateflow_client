@@ -30,22 +30,17 @@ export const usePromptsStore = create<PromptsStore>((set) => ({
       );
       set({ prompts: response.data.prompts, isLoading: false });
     } catch (error) {
-      console.error(error);
       set({ error: "Failed to fetch prompts", isLoading: false });
     }
   },
   updateSystemPrompt: async (name: string, newContent: string) => {
     set({ isLoading: true, error: null });
     try {
-      const response = await $api.put(
-        `${import.meta.env.VITE_API_URL}/api/ai/system-prompt`,
-        {
-          name,
-          newContent,
-        },
-      );
-      const updatedPrompt = response.data.prompt;
-      console.log(updatedPrompt);
+      await $api.put(`${import.meta.env.VITE_API_URL}/api/ai/system-prompt`, {
+        name,
+        newContent,
+      });
+
       set((state) => ({
         prompts: state.prompts.map((prompt) =>
           prompt.name === name
@@ -59,7 +54,6 @@ export const usePromptsStore = create<PromptsStore>((set) => ({
         isLoading: false,
       }));
     } catch (error: any) {
-      console.error(`Error updating system prompt (name: ${name}):`, error);
       let errorMessage = "Failed to update prompt";
       if (error.response) {
         switch (error.response.status) {

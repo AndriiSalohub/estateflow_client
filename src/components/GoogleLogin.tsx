@@ -32,8 +32,7 @@ export default function GoogleLogin({
         });
       }
     },
-    onError: (error) => {
-      console.error("Google OAuth error:", error);
+    onError: () => {
       toast(t("error"), {
         description: t("googleLoginInitiateFailed"),
       });
