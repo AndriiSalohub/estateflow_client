@@ -5,7 +5,7 @@ import { Link } from "@tanstack/react-router";
 import { Home, MapPin, Calendar, User, Eye } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-export default function PropertyCard({ property }: any) {
+export default function ListingCard({ property }: any) {
   const { properties, fetchChouse } = usePropertiesStore();
   const { t } = useTranslation();
   useEffect(() => {

@@ -1,9 +1,5 @@
 import { useEffect } from "react";
-import {
-  Drawer,
-  DrawerContent,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -11,7 +7,7 @@ import { Menu } from "lucide-react";
 import { useFilterStore } from "@/store/filterStore";
 import { usePropertiesStore } from "@/store/usePropertiesStore";
 
-export default function PropertyFilters() {
+export default function ListingsFilters() {
   const {
     price,
     area,
@@ -22,13 +18,13 @@ export default function PropertyFilters() {
     toggleRoom,
     toggleType,
   } = useFilterStore();
-  
+
   const { properties } = usePropertiesStore();
 
   useEffect(() => {
     if (properties.length > 0) {
-      const maxPrice = Math.max(...properties.map(p => Number(p.price) || 0));
-      const maxArea = Math.max(...properties.map(p => Number(p.size) || 0));
+      const maxPrice = Math.max(...properties.map((p) => Number(p.price) || 0));
+      const maxArea = Math.max(...properties.map((p) => Number(p.size) || 0));
 
       if (price[1] === 0) {
         setPrice([0, maxPrice]);
@@ -58,19 +54,23 @@ export default function PropertyFilters() {
           <h2 className="font-bold mb-2">Price</h2>
           <Slider
             min={0}
-            max={Math.max(...properties.map(p => Number(p.price) || 0)) || 100000}
+            max={
+              Math.max(...properties.map((p) => Number(p.price) || 0)) || 100000
+            }
             step={1000}
             value={[price[1]]}
             onValueChange={(val) => setPrice([0, val[0]])}
           />
-          <div className="text-sm mt-1">Up to {price[1].toLocaleString()} $</div>
+          <div className="text-sm mt-1">
+            Up to {price[1].toLocaleString()} $
+          </div>
         </div>
 
         <div>
           <h2 className="font-bold mb-2">Square (m²)</h2>
           <Slider
             min={0}
-            max={Math.max(...properties.map(p => Number(p.size) || 0)) || 200}
+            max={Math.max(...properties.map((p) => Number(p.size) || 0)) || 200}
             step={5}
             value={[area[1]]}
             onValueChange={(val) => setArea([0, val[0]])}

@@ -39,7 +39,7 @@ import {
 } from "@/components/ui/dialog";
 import { useTranslation } from "react-i18next";
 
-export default function ListingFormToUpdate({
+export default function UpdateListing({
   ownerId,
   propertyToEdit,
   onFinish,
@@ -528,7 +528,9 @@ export default function ListingFormToUpdate({
                     onChange={() => handleFacilityChange(facility)}
                     className="cursor-pointer"
                   />
-                  <span>{t(`facilitiesList.${normalizeFacilityKey(facility)}`)}</span>
+                  <span>
+                    {t(`facilitiesList.${normalizeFacilityKey(facility)}`)}
+                  </span>
                 </label>
               );
             })}

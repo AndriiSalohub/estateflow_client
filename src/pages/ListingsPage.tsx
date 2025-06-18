@@ -1,4 +1,4 @@
-import PropertyList from "@/components/PropertyList";
+import ListingsList from "@/components/ListingsList";
 import {
   Select,
   SelectContent,
@@ -80,7 +80,7 @@ export default function ListingsMainPage() {
           </div>
         </div>
 
-        <PropertyList />
+        <ListingsList />
       </div>
     </div>
   );

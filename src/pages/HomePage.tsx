@@ -6,7 +6,7 @@ import house2 from "@/assets/images/mainhouse_2.jpg";
 import house3 from "@/assets/images/mainhouse_3.jpg";
 import { useTranslation } from "react-i18next";
 
-export default function MainPage() {
+export default function HomePage() {
   const { t } = useTranslation();
   const handleExternalDownload = () => {
     window.open(
