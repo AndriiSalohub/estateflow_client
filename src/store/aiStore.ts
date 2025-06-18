@@ -45,8 +45,6 @@ export const aiStore = create<AiStore>((set, get) => ({
         { message: newMessage },
       );
 
-      console.log(`${API_URL}/api/ai/conversations/messages`);
-
       if (response.data.aiResponse.content) {
         const aiMessage: Message = {
           id: response.data.aiResponse.id,
@@ -61,7 +59,6 @@ export const aiStore = create<AiStore>((set, get) => ({
         }));
       }
     } catch (error) {
-      console.error("Error sending message:", error);
       set((state) => ({
         messages: state.messages.filter((msg) => msg.id !== userMessage.id),
         isLoading: false,

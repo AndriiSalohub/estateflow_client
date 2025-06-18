@@ -98,7 +98,6 @@ export const useUsersStore = create<UsersState>((set) => ({
   updateUser: async (user: User) => {
     set({ error: null });
     try {
-      console.log(user);
       const response = await $api.patch(
         `${import.meta.env.VITE_API_URL}/api/user/${user.id}`,
         { updatedInfo: user },

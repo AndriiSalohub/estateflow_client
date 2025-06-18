@@ -106,7 +106,6 @@ export default function UserManagementPage() {
       toast(t("error"), {
         description: t("userDeleteFailed"),
       });
-      console.error("Error deleting user:", error);
     } finally {
       setActionLoading((prev) => ({
         ...prev,
@@ -135,7 +134,6 @@ export default function UserManagementPage() {
       toast(t("error"), {
         description: t("userAddFailed"),
       });
-      console.error("Error adding user:", error);
     } finally {
       setActionLoading((prev) => ({ ...prev, "add-user": false }));
     }
@@ -155,7 +153,6 @@ export default function UserManagementPage() {
       toast(t("error"), {
         description: t("userUpdateFailed"),
       });
-      console.error("Error updating user:", error);
     } finally {
       setActionLoading((prev) => ({
         ...prev,

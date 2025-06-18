@@ -8,7 +8,6 @@ import { useUserStore } from "@/store/userStore";
 
 export const Route = createFileRoute("/listing-form-to-add-page")({
   validateSearch: (search: Record<string, unknown>) => {
-    console.log("validateSearch called with:", search);
     if (typeof search.userId !== "string") {
       throw new Error("Missing or invalid 'propertyId'");
     }
@@ -29,4 +28,3 @@ function ListingRouteComponent() {
     navigate({ to: "/" });
   }
 }
-

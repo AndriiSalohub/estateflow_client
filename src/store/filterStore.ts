@@ -58,7 +58,6 @@ const fetchFilterData = async () => {
         propertyTypesResponse.data.propertyTypes || DEFAULT_PROPERTY_TYPES,
     };
   } catch (error) {
-    console.error("Failed to fetch filter data:", error);
     throw new Error(
       axios.isAxiosError(error)
         ? error.response?.data?.message || "Failed to fetch filter data"

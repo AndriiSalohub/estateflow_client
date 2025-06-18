@@ -28,7 +28,6 @@ export default function UserProfile({ userId }: UserProfileProps) {
         setUser(res.data);
       } catch (err) {
         toast.error(t("userLoadingError"));
-        console.error("Error during user loading:", err);
       } finally {
         setLoading(false);
       }

@@ -1,9 +1,9 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 import {
   fetchWishlist,
   addToWishlist,
   removeFromWishlist,
-} from '@/api/wishlist';
+} from "@/api/wishlist";
 import type { PropertyWishlist } from "@/lib/types";
 
 interface WishlistStore {
@@ -21,7 +21,7 @@ export const useWishlistStore = create<WishlistStore>((set, get) => ({
   error: null,
 
   loadWishlist: async () => {
-    const token = localStorage.getItem('accessToken');
+    const token = localStorage.getItem("accessToken");
 
     if (!token) {
       set({ error: "You are not authorized" });
@@ -37,41 +37,33 @@ export const useWishlistStore = create<WishlistStore>((set, get) => ({
         set({ error: "You are not authorized" });
         return;
       }
-      set({ error: err?.response?.data?.message || 'Failed to load wishlist' });
+      set({ error: err?.response?.data?.message || "Failed to load wishlist" });
     } finally {
       set({ loading: false });
     }
   },
 
   addProperty: async (propertyId: string) => {
-    const token = localStorage.getItem('accessToken');
-    if (!token) {
-      set({ error: "You are not authorized" });
-      return;
-    }
-
     try {
-      await addToWishlist(propertyId, token);
-      await get().loadWishlist(); // refresh the list
+      await addToWishlist(propertyId);
+      await get().loadWishlist();
     } catch (err: any) {
-      set({ error: err?.response?.data?.message || 'Failed to add to wishlist' });
+      set({
+        error: err?.response?.data?.message || "Failed to add to wishlist",
+      });
     }
   },
 
   removeProperty: async (propertyId: string) => {
-    const token = localStorage.getItem('accessToken');
-    if (!token) {
-      set({ error: "You are not authorized" });
-      return;
-    }
-
     try {
-      await removeFromWishlist(propertyId, token);
+      await removeFromWishlist(propertyId);
       set((state) => ({
         wishlist: state.wishlist.filter((item) => item.id !== propertyId),
       }));
     } catch (err: any) {
-      set({ error: err?.response?.data?.message || 'Failed to remove from wishlist' });
+      set({
+        error: err?.response?.data?.message || "Failed to remove from wishlist",
+      });
     }
   },
 }));

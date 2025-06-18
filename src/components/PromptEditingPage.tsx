@@ -105,7 +105,6 @@ export default function PromptEditingPage() {
       );
     } catch (error: any) {
       toast.error(t("saveFailed"));
-      console.error(`Failed to save ${type} prompt:`, error);
     }
   };
 
@@ -132,7 +131,6 @@ export default function PromptEditingPage() {
       }, 2000);
     } catch (err) {
       toast.error(t("copyFailed"));
-      console.error(`Failed to copy ${type} prompt:`, err);
     }
   };
 

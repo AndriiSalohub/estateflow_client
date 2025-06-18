@@ -104,7 +104,6 @@ export default function UserProfileCard({ user }: { user: UserInfo }) {
       toast(t("error"), {
         description: t("profileUpdateFailed"),
       });
-      console.error("Profile update error:", error);
     }
   };
 
@@ -341,4 +340,3 @@ export default function UserProfileCard({ user }: { user: UserInfo }) {
     </>
   );
 }
-
