@@ -11,7 +11,10 @@ interface ConfirmChangePageProps {
   type: string;
 }
 
-export function ConfirmChangePage({ token, type }: ConfirmChangePageProps) {
+export default function ConfirmChangePage({
+  token,
+  type,
+}: ConfirmChangePageProps) {
   const { confirmEmailChange, confirmPasswordChange } = useUserStore();
   const navigate = useNavigate();
   const [message, setMessage] = useState("Processing your request...");

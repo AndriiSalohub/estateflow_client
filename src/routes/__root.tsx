@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { useAuthStore } from "@/store/authStore";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { ChatInterface } from "@/components/ChatInterface";
-import { ChatIcon } from "@/components/ChatIcon";
+import ChatInterface from "@/components/ChatInterface";
+import ChatIcon from "@/components/ChatIcon";
 import { useUserStore } from "@/store/userStore";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import type { ReactPayPalScriptOptions } from "@paypal/react-paypal-js";
-import { RealEstateLoader } from "@/components/RealEstateLoader";
+import RealEstateLoader from "@/components/RealEstateLoader";
 
 function RootComponent() {
   const initialOptions: ReactPayPalScriptOptions = {

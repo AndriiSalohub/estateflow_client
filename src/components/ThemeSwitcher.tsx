@@ -10,7 +10,7 @@ import {
 
 type ThemeType = "dark" | "light" | "system";
 
-const ThemeSwitcher = () => {
+export default function ThemeSwitcher() {
   const [theme, setTheme] = useState<ThemeType>("system");
 
   useEffect(() => {
@@ -84,6 +84,4 @@ const ThemeSwitcher = () => {
       </DropdownMenu>
     </div>
   );
-};
-
-export default ThemeSwitcher;
+}

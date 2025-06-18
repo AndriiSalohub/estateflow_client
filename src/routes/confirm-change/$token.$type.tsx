@@ -1,4 +1,4 @@
-import { ConfirmChangePage } from "@/pages/ConfirmChangePage";
+import ConfirmChangePage from "@/pages/ConfirmChangePage";
 import { createFileRoute, useLoaderData } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/confirm-change/$token/$type")({

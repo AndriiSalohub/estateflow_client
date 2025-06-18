@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
-import { LoadingDots } from "./LoadingDots";
+import LoadingDots from "./LoadingDots";
 import Markdown from "markdown-to-jsx";
 import { aiStore } from "@/store/aiStore";
 import type { Message } from "@/types/AiTypes";
@@ -22,7 +22,7 @@ interface ChatInterfaceProps {
   onClose: () => void;
 }
 
-export function ChatInterface({ isOpen, onClose }: ChatInterfaceProps) {
+export default function ChatInterface({ isOpen, onClose }: ChatInterfaceProps) {
   const { t } = useTranslation();
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);

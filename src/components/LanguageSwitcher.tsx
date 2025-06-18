@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const LanguageSwitcher = () => {
+export default function LanguageSwitcher() {
   const [language, setLanguage] = useState<string>("EN");
 
   const { i18n } = useTranslation();
@@ -44,6 +44,4 @@ const LanguageSwitcher = () => {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-};
-
-export default LanguageSwitcher;
+}

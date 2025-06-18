@@ -1,4 +1,4 @@
-import { SellerProperties } from "@/components/SellerProperties";
+import SellerProperties from "@/components/SellerProperties";
 import UserProfile from "@/components/UserProfileCardFromProperty";
 
 export default function UserProfilePage({ userId }: { userId: string }) {

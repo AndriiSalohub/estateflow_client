@@ -10,7 +10,10 @@ interface GoogleLoginProps {
   onValidationError?: () => void;
 }
 
-export function GoogleLogin({ role, onValidationError }: GoogleLoginProps) {
+export default function GoogleLogin({
+  role,
+  onValidationError,
+}: GoogleLoginProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { googleLogin, isLoading } = useAuthStore();

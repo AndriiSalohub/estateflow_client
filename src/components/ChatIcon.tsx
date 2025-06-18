@@ -1,7 +1,7 @@
 import { MessageCircle, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export function ChatIcon({
+export default function ChatIcon({
   onClick,
   className = "",
   isOpen = false,

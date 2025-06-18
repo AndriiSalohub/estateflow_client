@@ -32,7 +32,7 @@ import { useStatisticsStore } from "../store/statisticsStore";
 import { usePropertiesStore } from "../store/propertiesStore";
 import { useTranslation } from "react-i18next";
 
-const StatisticsPage = () => {
+export default function StatisticsPage() {
   const { t } = useTranslation();
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -422,6 +422,4 @@ const StatisticsPage = () => {
       </div>
     </div>
   );
-};
-
-export default StatisticsPage;
+}

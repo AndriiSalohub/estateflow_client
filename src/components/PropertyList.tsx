@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { usePropertiesStore } from "@/store/usePropertiesStore";
 import { useFilterStore } from "@/store/filterStore";
-import { PropertyCard } from "./PropertyCard";
+import PropertyCard from "./PropertyCard";
 import {
   Pagination,
   PaginationContent,
@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/pagination";
 import { useTranslation } from "react-i18next";
 
-export function PropertyList() {
+export default function PropertyList() {
   const { t } = useTranslation();
   const { properties, loading, error, fetchChouse } = usePropertiesStore();
   const { price, area, rooms, types, propertyTypes, searchQuery, sortBy } =

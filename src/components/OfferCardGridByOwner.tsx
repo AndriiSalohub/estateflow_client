@@ -16,7 +16,7 @@ export default function OfferCardGridByOwner({ user }: { user: UserInfo }) {
   const {
     properties,
     loading: propertiesLoading,
-    fetchAll, // Changed from fetchMultiple to fetchAll
+    fetchAll,
   } = usePropertiesStore();
 
   const {
