@@ -1,4 +1,4 @@
-import CancelSubscriptionPayment from "@/pages/CancelSubscriptionPage";
+import CompleteSubscriptionPage from "@/pages/CompleteSubscriptionPage";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/complete-subscription")({
@@ -6,5 +6,5 @@ export const Route = createFileRoute("/complete-subscription")({
 });
 
 function RouteComponent() {
-  return <CancelSubscriptionPayment />;
+  return <CompleteSubscriptionPage />;
 }

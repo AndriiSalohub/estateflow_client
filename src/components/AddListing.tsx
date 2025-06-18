@@ -42,7 +42,7 @@ import {
 import { useTranslation } from "react-i18next";
 import "../i18n";
 
-export default function ListingFormToAdd({ ownerId }: { ownerId: string }) {
+export default function AddListing({ ownerId }: { ownerId: string }) {
   const normalizeFacilityKey = (facility: string) =>
     facility.toLowerCase().replace(/[\s/-]/g, "_");
   const { t } = useTranslation();
@@ -449,7 +449,9 @@ export default function ListingFormToAdd({ ownerId }: { ownerId: string }) {
                     onChange={() => handleFacilityChange(facility)}
                     className="cursor-pointer"
                   />
-                  <span>{t(`facilitiesList.${normalizeFacilityKey(facility)}`)}</span>
+                  <span>
+                    {t(`facilitiesList.${normalizeFacilityKey(facility)}`)}
+                  </span>
                 </label>
               );
             })}

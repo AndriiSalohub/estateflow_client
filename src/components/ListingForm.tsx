@@ -311,7 +311,7 @@ export default function ListingForm({ propertyId }: { propertyId: string }) {
 
               <div className="flex gap-2 pt-2 flex-wrap">
                 <Link
-                  to="/user-profile-page"
+                  to="/seller-profile-page"
                   search={{ userId: selectedProperty.ownerId }}
                   className="[&.active]:underline"
                 >

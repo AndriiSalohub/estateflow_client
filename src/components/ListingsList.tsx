@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { usePropertiesStore } from "@/store/usePropertiesStore";
 import { useFilterStore } from "@/store/filterStore";
-import PropertyCard from "./PropertyCard";
+import ListingCard from "./ListingsCard";
 import {
   Pagination,
   PaginationContent,
@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/pagination";
 import { useTranslation } from "react-i18next";
 
-export default function PropertyList() {
+export default function ListingsList() {
   const { t } = useTranslation();
   const { properties, loading, error, fetchChouse } = usePropertiesStore();
   const { price, area, rooms, types, propertyTypes, searchQuery, sortBy } =
@@ -32,15 +32,14 @@ export default function PropertyList() {
     setCurrentPage(1);
   }, [price, area, rooms, types, propertyTypes, searchQuery, sortBy]);
 
-  // Фильтрация + поиск + сортировка
   const filteredProperties = useMemo(() => {
     let result = properties;
 
     result = result.filter((property) => {
-      if (price[0] > 0 && Number(property.price) < price[0]) return false; // Min price
-      if (price[1] > 0 && Number(property.price) > price[1]) return false; // Max price
-      if (area[0] > 0 && Number(property.size) < area[0]) return false; // Min area
-      if (area[1] > 0 && Number(property.size) > area[1]) return false; // Max area
+      if (price[0] > 0 && Number(property.price) < price[0]) return false;
+      if (price[1] > 0 && Number(property.price) > price[1]) return false;
+      if (area[0] > 0 && Number(property.size) < area[0]) return false;
+      if (area[1] > 0 && Number(property.size) > area[1]) return false;
       if (rooms.length > 0 && !rooms.includes(Number(property.rooms)))
         return false;
       if (
@@ -171,7 +170,7 @@ export default function PropertyList() {
       )}
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 p-4">
         {currentProperties.map((property) => (
-          <PropertyCard key={property.id} property={property} />
+          <ListingCard key={property.id} property={property} />
         ))}
 
         {filteredProperties.length === 0 && properties.length > 0 && (

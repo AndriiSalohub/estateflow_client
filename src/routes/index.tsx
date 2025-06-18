@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import MainpageForm from "@/pages/MainPage";
+import HomePage from "@/pages/HomePage";
 import { useUserStore } from "@/store/userStore";
 import PromptEditingPage from "@/pages/PromptEditingPage";
 import StatisticsPage from "@/pages/StatisticsPage";
@@ -17,7 +17,7 @@ function Index() {
       ) : user?.role === "moderator" ? (
         <StatisticsPage />
       ) : (
-        <MainpageForm />
+        <HomePage />
       )}
     </>
   );

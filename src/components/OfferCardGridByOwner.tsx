@@ -36,14 +36,14 @@ export default function OfferCardGridByOwner({ user }: { user: UserInfo }) {
       user.role === "private_seller" ||
       user.role === "agency"
     ) {
-      fetchAll(); // Changed from fetchMultiple to fetchAll
+      fetchAll();
     } else if (user.role === "renter_buyer") {
       loadWishlist();
     }
   }, [user.role]);
 
   const handleRefresh = () => {
-    fetchAll(); // Changed from fetchMultiple to fetchAll
+    fetchAll();
   };
 
   const filteredProperties = useMemo(() => {

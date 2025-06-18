@@ -4,7 +4,7 @@ import { Pencil, HeartMinus, MapPin, Home, Eye } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import type { PropertyWishlist, Property } from "@/lib/types";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import ListingFormToUpdate from "@/components/ListingFormToUpdate";
+import UpdateListing from "@/components/UpdateListing";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -103,7 +103,9 @@ export default function OfferCardByOwner({
               </div>
               <div className="flex items-center gap-1 text-muted-foreground">
                 <Home size={14} />
-                <span>{property?.rooms || "N/A"} {t("rooms")}</span>
+                <span>
+                  {property?.rooms || "N/A"} {t("rooms")}
+                </span>
               </div>
             </div>
 
@@ -113,7 +115,7 @@ export default function OfferCardByOwner({
           </CardContent>
           <Dialog open={isEditing} onOpenChange={setIsEditing}>
             <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
-              <ListingFormToUpdate
+              <UpdateListing
                 ownerId={ownerId}
                 propertyToEdit={property}
                 onFinish={() => {
@@ -190,7 +192,9 @@ export default function OfferCardByOwner({
                 </div>
                 <div className="flex items-center gap-1 text-muted-foreground">
                   <Home size={14} />
-                  <span>{propertyWishlist?.rooms || "N/A"} {t("rooms")}</span>
+                  <span>
+                    {propertyWishlist?.rooms || "N/A"} {t("rooms")}
+                  </span>
                 </div>
               </div>
 

@@ -11,10 +11,10 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as UserProfilePageImport } from './routes/user-profile-page'
 import { Route as UserManagementImport } from './routes/user-management'
 import { Route as UserDashboardImport } from './routes/user-dashboard'
 import { Route as StatisticsImport } from './routes/statistics'
+import { Route as SellerProfilePageImport } from './routes/seller-profile-page'
 import { Route as RestorePasswordStep1Import } from './routes/restore-password-step1'
 import { Route as RegisterFormImport } from './routes/register-form'
 import { Route as ProtectedImport } from './routes/protected'
@@ -35,12 +35,6 @@ import { Route as ConfirmChangeTokenTypeImport } from './routes/confirm-change/$
 
 // Create/Update Routes
 
-const UserProfilePageRoute = UserProfilePageImport.update({
-  id: '/user-profile-page',
-  path: '/user-profile-page',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const UserManagementRoute = UserManagementImport.update({
   id: '/user-management',
   path: '/user-management',
@@ -56,6 +50,12 @@ const UserDashboardRoute = UserDashboardImport.update({
 const StatisticsRoute = StatisticsImport.update({
   id: '/statistics',
   path: '/statistics',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SellerProfilePageRoute = SellerProfilePageImport.update({
+  id: '/seller-profile-page',
+  path: '/seller-profile-page',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -263,6 +263,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RestorePasswordStep1Import
       parentRoute: typeof rootRoute
     }
+    '/seller-profile-page': {
+      id: '/seller-profile-page'
+      path: '/seller-profile-page'
+      fullPath: '/seller-profile-page'
+      preLoaderRoute: typeof SellerProfilePageImport
+      parentRoute: typeof rootRoute
+    }
     '/statistics': {
       id: '/statistics'
       path: '/statistics'
@@ -282,13 +289,6 @@ declare module '@tanstack/react-router' {
       path: '/user-management'
       fullPath: '/user-management'
       preLoaderRoute: typeof UserManagementImport
-      parentRoute: typeof rootRoute
-    }
-    '/user-profile-page': {
-      id: '/user-profile-page'
-      path: '/user-profile-page'
-      fullPath: '/user-profile-page'
-      preLoaderRoute: typeof UserProfilePageImport
       parentRoute: typeof rootRoute
     }
     '/password-reset/$email-token': {
@@ -332,10 +332,10 @@ export interface FileRoutesByFullPath {
   '/protected': typeof ProtectedRoute
   '/register-form': typeof RegisterFormRoute
   '/restore-password-step1': typeof RestorePasswordStep1Route
+  '/seller-profile-page': typeof SellerProfilePageRoute
   '/statistics': typeof StatisticsRoute
   '/user-dashboard': typeof UserDashboardRoute
   '/user-management': typeof UserManagementRoute
-  '/user-profile-page': typeof UserProfilePageRoute
   '/password-reset/$email-token': typeof PasswordResetEmailTokenRoute
   '/verify-email/$email-token': typeof VerifyEmailEmailTokenRoute
   '/confirm-change/$token/$type': typeof ConfirmChangeTokenTypeRoute
@@ -356,10 +356,10 @@ export interface FileRoutesByTo {
   '/protected': typeof ProtectedRoute
   '/register-form': typeof RegisterFormRoute
   '/restore-password-step1': typeof RestorePasswordStep1Route
+  '/seller-profile-page': typeof SellerProfilePageRoute
   '/statistics': typeof StatisticsRoute
   '/user-dashboard': typeof UserDashboardRoute
   '/user-management': typeof UserManagementRoute
-  '/user-profile-page': typeof UserProfilePageRoute
   '/password-reset/$email-token': typeof PasswordResetEmailTokenRoute
   '/verify-email/$email-token': typeof VerifyEmailEmailTokenRoute
   '/confirm-change/$token/$type': typeof ConfirmChangeTokenTypeRoute
@@ -381,10 +381,10 @@ export interface FileRoutesById {
   '/protected': typeof ProtectedRoute
   '/register-form': typeof RegisterFormRoute
   '/restore-password-step1': typeof RestorePasswordStep1Route
+  '/seller-profile-page': typeof SellerProfilePageRoute
   '/statistics': typeof StatisticsRoute
   '/user-dashboard': typeof UserDashboardRoute
   '/user-management': typeof UserManagementRoute
-  '/user-profile-page': typeof UserProfilePageRoute
   '/password-reset/$email-token': typeof PasswordResetEmailTokenRoute
   '/verify-email/$email-token': typeof VerifyEmailEmailTokenRoute
   '/confirm-change/$token/$type': typeof ConfirmChangeTokenTypeRoute
@@ -407,10 +407,10 @@ export interface FileRouteTypes {
     | '/protected'
     | '/register-form'
     | '/restore-password-step1'
+    | '/seller-profile-page'
     | '/statistics'
     | '/user-dashboard'
     | '/user-management'
-    | '/user-profile-page'
     | '/password-reset/$email-token'
     | '/verify-email/$email-token'
     | '/confirm-change/$token/$type'
@@ -430,10 +430,10 @@ export interface FileRouteTypes {
     | '/protected'
     | '/register-form'
     | '/restore-password-step1'
+    | '/seller-profile-page'
     | '/statistics'
     | '/user-dashboard'
     | '/user-management'
-    | '/user-profile-page'
     | '/password-reset/$email-token'
     | '/verify-email/$email-token'
     | '/confirm-change/$token/$type'
@@ -453,10 +453,10 @@ export interface FileRouteTypes {
     | '/protected'
     | '/register-form'
     | '/restore-password-step1'
+    | '/seller-profile-page'
     | '/statistics'
     | '/user-dashboard'
     | '/user-management'
-    | '/user-profile-page'
     | '/password-reset/$email-token'
     | '/verify-email/$email-token'
     | '/confirm-change/$token/$type'
@@ -478,10 +478,10 @@ export interface RootRouteChildren {
   ProtectedRoute: typeof ProtectedRoute
   RegisterFormRoute: typeof RegisterFormRoute
   RestorePasswordStep1Route: typeof RestorePasswordStep1Route
+  SellerProfilePageRoute: typeof SellerProfilePageRoute
   StatisticsRoute: typeof StatisticsRoute
   UserDashboardRoute: typeof UserDashboardRoute
   UserManagementRoute: typeof UserManagementRoute
-  UserProfilePageRoute: typeof UserProfilePageRoute
   PasswordResetEmailTokenRoute: typeof PasswordResetEmailTokenRoute
   VerifyEmailEmailTokenRoute: typeof VerifyEmailEmailTokenRoute
   ConfirmChangeTokenTypeRoute: typeof ConfirmChangeTokenTypeRoute
@@ -502,10 +502,10 @@ const rootRouteChildren: RootRouteChildren = {
   ProtectedRoute: ProtectedRoute,
   RegisterFormRoute: RegisterFormRoute,
   RestorePasswordStep1Route: RestorePasswordStep1Route,
+  SellerProfilePageRoute: SellerProfilePageRoute,
   StatisticsRoute: StatisticsRoute,
   UserDashboardRoute: UserDashboardRoute,
   UserManagementRoute: UserManagementRoute,
-  UserProfilePageRoute: UserProfilePageRoute,
   PasswordResetEmailTokenRoute: PasswordResetEmailTokenRoute,
   VerifyEmailEmailTokenRoute: VerifyEmailEmailTokenRoute,
   ConfirmChangeTokenTypeRoute: ConfirmChangeTokenTypeRoute,
@@ -535,10 +535,10 @@ export const routeTree = rootRoute
         "/protected",
         "/register-form",
         "/restore-password-step1",
+        "/seller-profile-page",
         "/statistics",
         "/user-dashboard",
         "/user-management",
-        "/user-profile-page",
         "/password-reset/$email-token",
         "/verify-email/$email-token",
         "/confirm-change/$token/$type"
@@ -586,6 +586,9 @@ export const routeTree = rootRoute
     "/restore-password-step1": {
       "filePath": "restore-password-step1.tsx"
     },
+    "/seller-profile-page": {
+      "filePath": "seller-profile-page.tsx"
+    },
     "/statistics": {
       "filePath": "statistics.tsx"
     },
@@ -594,9 +597,6 @@ export const routeTree = rootRoute
     },
     "/user-management": {
       "filePath": "user-management.tsx"
-    },
-    "/user-profile-page": {
-      "filePath": "user-profile-page.tsx"
     },
     "/password-reset/$email-token": {
       "filePath": "password-reset/$email-token.tsx"

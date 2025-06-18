@@ -9,7 +9,7 @@ export default function CompletePaymentPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-background items-center justify-center p-4">
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <Card className="border-green-600 shadow-lg">
           <CardContent className="pt-10 pb-12 text-center space-y-6">
@@ -34,7 +34,7 @@ export default function CompletePaymentPage() {
 
             <div className="space-y-4">
               <Button
-                className="w-full bg-green-600 hover:bg-green-700"
+                className="w-full bg-green-600 hover:bg-green-700 cursor-pointer"
                 size="lg"
                 onClick={() => navigate({ to: "/" })}
                 aria-label={t("returnToHome")}
@@ -45,7 +45,7 @@ export default function CompletePaymentPage() {
               <Button
                 variant="outline"
                 size="lg"
-                className="w-full border-green-600 text-green-600 hover:bg-green-50"
+                className="w-full border-green-600 text-green-600 hover:bg-green-50 cursor-pointer"
                 onClick={() => navigate({ to: "/user-dashboard" })}
                 aria-label={t("viewMyAccount")}
               >
