@@ -1,6 +1,6 @@
 import { Home, Building, MapPin, Key, Heart } from "lucide-react";
 
-export function RealEstateLoader() {
+export default function RealEstateLoader() {
   const styles = `
     @keyframes smoothBounce {
       0%,

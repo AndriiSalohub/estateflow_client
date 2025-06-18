@@ -5,12 +5,12 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import { useAuthStore } from "@/store/authStore";
-import { GoogleLogin } from "./GoogleLogin";
+import GoogleLogin from "./GoogleLogin";
 import { useUserStore } from "@/store/userStore";
 import { useTranslation } from "react-i18next";
 import { Eye, EyeOff } from "lucide-react";
 
-export function LoginForm() {
+export default function LoginForm() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");

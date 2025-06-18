@@ -32,7 +32,7 @@ interface ActionLoading {
   [key: string]: boolean;
 }
 
-const PropertyManagement = () => {
+export default function PropertyManagement() {
   const { t } = useTranslation();
   const { properties, loading, error, fetchAll, remove, verifyProperty } =
     usePropertiesStore();
@@ -269,7 +269,9 @@ const PropertyManagement = () => {
                       <div className="flex items-center gap-4 text-muted-foreground">
                         <div className="flex items-center gap-1">
                           <Home size={14} />
-                          <span>{property.rooms} {t("rooms")}</span>
+                          <span>
+                            {property.rooms} {t("rooms")}
+                          </span>
                         </div>
                         <span>{property.size}</span>
                       </div>
@@ -387,6 +389,4 @@ const PropertyManagement = () => {
       </div>
     </div>
   );
-};
-
-export default PropertyManagement;
+}

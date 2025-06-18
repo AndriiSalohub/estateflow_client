@@ -5,7 +5,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
-export function VerifyEmailPage({ emailToken }: { emailToken: string }) {
+export default function VerifyEmailPage({
+  emailToken,
+}: {
+  emailToken: string;
+}) {
   const [message, setMessage] = useState("Verifying your email...");
   const [isVerifying, setIsVerifying] = useState(false);
   const [status, setStatus] = useState<"loading" | "success" | "error">(

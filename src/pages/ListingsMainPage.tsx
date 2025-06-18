@@ -1,4 +1,4 @@
-import { PropertyList } from "@/components/PropertyList";
+import PropertyList from "@/components/PropertyList";
 import {
   Select,
   SelectContent,
@@ -8,8 +8,8 @@ import {
 } from "@/components/ui/select";
 import { SortAsc, Star, TrendingUp, TrendingDown, Clock } from "lucide-react";
 import { useFilterStore } from "@/store/filterStore";
-import { SearchBar } from "@/components/SearchBar";
-import { FilterSidebar } from "@/components/FilterSidebar";
+import SearchBar from "@/components/SearchBar";
+import FilterSidebar from "@/components/FilterSidebar";
 import { useTranslation } from "react-i18next";
 
 export default function ListingsMainPage() {

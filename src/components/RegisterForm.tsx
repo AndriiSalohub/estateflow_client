@@ -13,11 +13,11 @@ import {
 } from "@/components/ui/select";
 import { useAuthStore } from "@/store/authStore";
 import { toast } from "sonner";
-import { GoogleLogin } from "./GoogleLogin";
+import GoogleLogin from "./GoogleLogin";
 import { useUserStore, type UserRole } from "@/store/userStore";
 import { useTranslation } from "react-i18next";
 
-export function RegisterForm() {
+export default function RegisterForm() {
   const { t } = useTranslation();
   const [socialRole, setSocialRole] = useState("");
   const [formData, setFormData] = useState({

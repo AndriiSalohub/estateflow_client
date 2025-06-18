@@ -1,4 +1,3 @@
-// src/pages/ListingPage.tsx
 import ListingForm from "@/components/ListingForm";
 
 export default function ListingPage({ propertyId }: { propertyId: string }) {

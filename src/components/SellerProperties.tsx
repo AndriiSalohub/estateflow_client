@@ -26,7 +26,7 @@ interface SellerPropertiesProps {
   userId: string;
 }
 
-export function SellerProperties({ userId }: SellerPropertiesProps) {
+export default function SellerProperties({ userId }: SellerPropertiesProps) {
   const [user, setUser] = useState<any | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

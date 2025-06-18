@@ -57,7 +57,7 @@ interface ActionLoading {
   [key: string]: boolean;
 }
 
-const UserManagementPage = () => {
+export default function UserManagementPage() {
   const { t } = useTranslation();
   const {
     users,
@@ -680,7 +680,9 @@ const UserManagementPage = () => {
                           </DialogTrigger>
                           <DialogContent>
                             <DialogHeader>
-                              <DialogTitle>{t("Delete User Account")}</DialogTitle>
+                              <DialogTitle>
+                                {t("Delete User Account")}
+                              </DialogTitle>
                               <DialogDescription>
                                 {t("deleteUserDescriptionPart1")} "
                                 {user.username}"?{" "}
@@ -724,6 +726,4 @@ const UserManagementPage = () => {
       </div>
     </div>
   );
-};
-
-export default UserManagementPage;
+}

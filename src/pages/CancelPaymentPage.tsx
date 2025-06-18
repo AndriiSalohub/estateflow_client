@@ -1,11 +1,10 @@
-import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { XCircle, Home, ShoppingBag, ArrowLeft } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 
-const CancelPaymentPage: React.FC = () => {
+export default function CancelPaymentPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -67,6 +66,4 @@ const CancelPaymentPage: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default CancelPaymentPage;
+}

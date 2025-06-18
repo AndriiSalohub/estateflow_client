@@ -3,7 +3,7 @@ import { X, Search } from "lucide-react";
 import { useFilterStore } from "@/store/filterStore";
 import { useTranslation } from "react-i18next";
 
-export function SearchBar() {
+export default function SearchBar() {
   const { t } = useTranslation();
   const { searchQuery, setSearchQuery } = useFilterStore();
 

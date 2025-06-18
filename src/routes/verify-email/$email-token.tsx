@@ -1,4 +1,4 @@
-import { VerifyEmailPage } from "@/pages/VerifyEmailPage";
+import VerifyEmailPage from "@/pages/VerifyEmailPage";
 import { createFileRoute, useLoaderData } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/verify-email/$email-token")({

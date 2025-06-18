@@ -13,7 +13,7 @@ import { Filter } from "lucide-react";
 import { useFilterStore } from "@/store/filterStore";
 import { useTranslation } from "react-i18next";
 
-export function FilterSidebar() {
+export default function FilterSidebar() {
   const { t } = useTranslation();
   const {
     price,

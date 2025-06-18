@@ -12,7 +12,7 @@ import "../i18n";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "./LanguageSwitcher";
 
-function Header() {
+export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isAuthenticated, logout, isInitialized, isLoading } = useAuthStore();
   const { user } = useUserStore();
@@ -327,5 +327,3 @@ function Header() {
     </>
   );
 }
-
-export default Header;

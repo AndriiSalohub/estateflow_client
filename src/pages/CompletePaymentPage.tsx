@@ -1,11 +1,10 @@
-import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, Home, User } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 
-const CompletePaymentPage: React.FC = () => {
+export default function CompletePaymentPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -59,6 +58,4 @@ const CompletePaymentPage: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default CompletePaymentPage;
+}
