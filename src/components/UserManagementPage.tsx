@@ -3,12 +3,12 @@ import { Button } from "@/components/ui/button";
 import {
   Trash2,
   Edit,
-  User,
   Calendar,
   Plus,
   Shield,
   Building,
   Users,
+  User,
   Eye,
   EyeOff,
   ShieldCheck,
@@ -38,20 +38,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { useUsersStore } from "@/store/usersStore";
 import { useTranslation } from "react-i18next";
-
-interface User {
-  id: string;
-  username: string;
-  email: string;
-  role: "renter_buyer" | "private_seller" | "agency" | "moderator" | "admin";
-  isEmailVerified: boolean;
-  paypalCredentials?: string;
-  listingLimit?: number;
-  avatarUrl: string;
-  bio: string;
-  createdAt: string;
-  updatedAt: string;
-}
+import type { User as UserI } from "@/types/usersTypes";
 
 interface ActionLoading {
   [key: string]: boolean;
@@ -70,7 +57,7 @@ export default function UserManagementPage() {
   } = useUsersStore();
   const [filter, setFilter] = useState("all");
   const [actionLoading, setActionLoading] = useState<ActionLoading>({});
-  const [editingUser, setEditingUser] = useState<User | null>(null);
+  const [editingUser, setEditingUser] = useState<UserI | null>(null);
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -78,7 +65,7 @@ export default function UserManagementPage() {
     username: "",
     email: "",
     password: "",
-    role: "moderator" as User["role"],
+    role: "moderator" as UserI["role"],
     listingLimit: -1,
     bio: "This section is yet empty.",
   });
@@ -342,7 +329,7 @@ export default function UserManagementPage() {
                       onValueChange={(value) =>
                         setNewUser((prev) => ({
                           ...prev,
-                          role: value as User["role"],
+                          role: value as UserI["role"],
                         }))
                       }
                     >
@@ -591,7 +578,7 @@ export default function UserManagementPage() {
                                         prev
                                           ? {
                                               ...prev,
-                                              role: value as User["role"],
+                                              role: value as UserI["role"],
                                               listingLimit:
                                                 value === "agency"
                                                   ? undefined

@@ -1,22 +1,6 @@
-import { $api } from "@/api/BaseUrl";
 import { create } from "zustand";
-
-interface Prompt {
-  id: string;
-  name: string;
-  content: string;
-  isDefault: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface PromptsStore {
-  isLoading: boolean;
-  error: string | null;
-  prompts: Prompt[];
-  fetchAllPrompts: () => Promise<void>;
-  updateSystemPrompt: (name: string, newContent: string) => Promise<void>;
-}
+import { $api, API_URL } from "@/api/BaseUrl";
+import type { PromptsStore } from "@/types/promptsTypes";
 
 export const usePromptsStore = create<PromptsStore>((set) => ({
   isLoading: false,
@@ -25,9 +9,7 @@ export const usePromptsStore = create<PromptsStore>((set) => ({
   fetchAllPrompts: async () => {
     set({ isLoading: true, error: null });
     try {
-      const response = await $api.get(
-        `${import.meta.env.VITE_API_URL}/api/ai/system-prompts`,
-      );
+      const response = await $api.get(`${API_URL}/api/ai/system-prompts`);
       set({ prompts: response.data.prompts, isLoading: false });
     } catch (error) {
       set({ error: "Failed to fetch prompts", isLoading: false });
@@ -36,7 +18,7 @@ export const usePromptsStore = create<PromptsStore>((set) => ({
   updateSystemPrompt: async (name: string, newContent: string) => {
     set({ isLoading: true, error: null });
     try {
-      await $api.put(`${import.meta.env.VITE_API_URL}/api/ai/system-prompt`, {
+      await $api.put(`${API_URL}/api/ai/system-prompt`, {
         name,
         newContent,
       });

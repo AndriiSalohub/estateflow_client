@@ -1,7 +1,7 @@
 import OfferCarByOwner from "@/components/OfferCardByOwner";
 import { Card, CardContent } from "@/components/ui/card";
 import { Building2, PlusCircle, AlertTriangle } from "lucide-react";
-import { usePropertiesStore } from "@/store/propertiesStore"; // Changed import
+import { usePropertiesStore } from "@/store/propertiesStore";
 import { useEffect, useState, useMemo } from "react";
 import type { UserInfo } from "@/lib/types";
 import { ourListingsLimit } from "@/lib/types";
@@ -11,7 +11,13 @@ import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import Skeleton from "./Skeleton";
 
-export default function OfferCardGridByOwner({ user }: { user: UserInfo }) {
+interface OfferCardGridByOwnerProps {
+  user: UserInfo;
+}
+
+export default function OfferCardGridByOwner({
+  user,
+}: OfferCardGridByOwnerProps) {
   const { t } = useTranslation();
 
   const {

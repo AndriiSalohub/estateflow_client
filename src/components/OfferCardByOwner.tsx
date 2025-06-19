@@ -2,11 +2,21 @@ import { CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Pencil, HeartMinus, MapPin, Home, Eye } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import type { PropertyWishlist, Property } from "@/lib/types";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import UpdateListing from "@/components/UpdateListing";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import type { PropertyWishlist } from "@/types/wishlistTypes";
+import type { Property } from "@/types/propertiesTypes";
+
+interface OfferCardByOwnerProps {
+  ownerId: string;
+  role: string;
+  property?: Property;
+  propertyWishlist?: PropertyWishlist;
+  onRemove?: () => void;
+  onRefresh: () => void;
+}
 
 export default function OfferCardByOwner({
   ownerId,
@@ -15,14 +25,7 @@ export default function OfferCardByOwner({
   propertyWishlist,
   onRemove,
   onRefresh,
-}: {
-  ownerId: string;
-  role: string;
-  property?: Property;
-  propertyWishlist?: PropertyWishlist;
-  onRemove?: () => void;
-  onRefresh: () => void;
-}) {
+}: OfferCardByOwnerProps) {
   const { t } = useTranslation();
   const [isEditing, setIsEditing] = useState(false);
 

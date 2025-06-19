@@ -17,7 +17,6 @@ import {
   currencyOptions,
   statusOptions,
 } from "@/lib/types";
-import { createProperty } from "@/api/properties";
 import { toast } from "sonner";
 import { useNavigate } from "@tanstack/react-router";
 import {
@@ -41,8 +40,14 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useTranslation } from "react-i18next";
 import "../i18n";
+import { usePropertiesStore } from "@/store/propertiesStore";
 
-export default function AddListing({ ownerId }: { ownerId: string }) {
+interface AddListingProps {
+  ownerId: string;
+}
+
+export default function AddListing({ ownerId }: AddListingProps) {
+  const { createProperty } = usePropertiesStore();
   const normalizeFacilityKey = (facility: string) =>
     facility.toLowerCase().replace(/[\s/-]/g, "_");
   const { t } = useTranslation();

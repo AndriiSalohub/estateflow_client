@@ -13,7 +13,7 @@ import { Separator } from "@/components/ui/separator";
 import LoadingDots from "./LoadingDots";
 import Markdown from "markdown-to-jsx";
 import { aiStore } from "@/store/aiStore";
-import type { Message } from "@/types/AiTypes";
+import type { Message } from "@/types/aiTypes";
 import { MarkdownComponents } from "./MarkdownCompoents";
 import { useTranslation } from "react-i18next";
 

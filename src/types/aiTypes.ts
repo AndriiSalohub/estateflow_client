@@ -1,3 +1,13 @@
+export interface AiStore {
+  messages: Message[];
+  isLoading: boolean;
+  newMessage: string;
+  isInitializing: boolean;
+  setNewMessage: (message: string) => void;
+  sendMessage: () => Promise<void>;
+  initializeConversation: () => Promise<void>;
+}
+
 export interface Message {
   id: string;
   createdAt: Date;

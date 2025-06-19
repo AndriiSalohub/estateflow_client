@@ -1,18 +1,23 @@
 import { useEffect } from "react";
-import { usePropertiesStore } from "@/store/usePropertiesStore";
+import { usePropertiesStore } from "@/store/propertiesStore";
 import { CardContent } from "@/components/ui/card";
 import { Link } from "@tanstack/react-router";
 import { Home, MapPin, Calendar, User, Eye } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import type { Property } from "@/types/propertiesTypes";
 
-export default function ListingCard({ property }: any) {
-  const { properties, fetchChouse } = usePropertiesStore();
+interface ListingCardProps {
+  property: Property;
+}
+
+export default function ListingCard({ property }: ListingCardProps) {
+  const { properties, fetchAll } = usePropertiesStore();
   const { t } = useTranslation();
   useEffect(() => {
     if (properties.length === 0) {
-      fetchChouse("active");
+      fetchAll("active");
     }
-  }, [properties.length, fetchChouse]);
+  }, [properties.length, fetchAll]);
 
   const formatDate = (dateString: any) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -55,12 +60,6 @@ export default function ListingCard({ property }: any) {
             <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 rounded-full capitalize">
               {property.transactionType}
             </span>
-
-            {/* <span className="flex gap-1 px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300"> */}
-            {/*   <Eye className="w-4 h-4" /> */}
-            {/*   {property.views.length}{" "} */}
-            {/*   {property.views.length === 1 ? "view" : "views"} */}
-            {/* </span> */}
           </div>
         </Link>
       </div>
