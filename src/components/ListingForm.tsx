@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Share2, Heart, HeartOff, Eye } from "lucide-react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { usePropertiesStore } from "@/store/usePropertiesStore";
+import { usePropertiesStore } from "@/store/propertiesStore";
 import { useWishlistStore } from "@/store/wishlistStore";
 import { useAuthStore } from "@/store/authStore";
 import { toast } from "sonner";
@@ -18,7 +18,11 @@ import { PayPalButtons } from "@paypal/react-paypal-js";
 import { $api } from "@/api/BaseUrl";
 import { useTranslation } from "react-i18next";
 
-export default function ListingForm({ propertyId }: { propertyId: string }) {
+interface ListingFormProps {
+  propertyId: string;
+}
+
+export default function ListingForm({ propertyId }: ListingFormProps) {
   const normalizeFacilityKey = (facility: string) =>
     facility.toLowerCase().replace(/[\s/-]/g, "_");
   const { t } = useTranslation();

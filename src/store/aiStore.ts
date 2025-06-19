@@ -1,19 +1,7 @@
 import { create } from "zustand";
-import { $api } from "@/api/BaseUrl";
-import type { Message, MessageResponse } from "@/types/AiTypes";
+import { $api, API_URL } from "@/api/BaseUrl";
 import uuid from "react-uuid";
-
-const API_URL = import.meta.env.VITE_API_URL;
-
-interface AiStore {
-  messages: Message[];
-  isLoading: boolean;
-  newMessage: string;
-  isInitializing: boolean;
-  setNewMessage: (message: string) => void;
-  sendMessage: () => Promise<void>;
-  initializeConversation: () => Promise<void>;
-}
+import type { AiStore, Message, MessageResponse } from "@/types/aiTypes";
 
 export const aiStore = create<AiStore>((set, get) => ({
   messages: [],

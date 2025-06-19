@@ -17,7 +17,11 @@ import { toast } from "sonner";
 import { useUserStore } from "@/store/userStore";
 import { useTranslation } from "react-i18next";
 
-export default function UserProfileCard({ user }: { user: UserInfo }) {
+interface UserProfileCard {
+  user: UserInfo;
+}
+
+export default function UserProfileCard({ user }: UserProfileCard) {
   const { t } = useTranslation();
   const {
     updateProfile,

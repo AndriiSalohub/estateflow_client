@@ -1,14 +1,19 @@
 import { Star } from "lucide-react";
 import { useTranslation } from "react-i18next";
-type PreviewItem = {
+
+interface PreviewItem {
   image: string;
   type: string;
   rooms: number;
   size: number;
   price: string;
-};
+}
 
-export default function RealEstatePreview({ items }: { items: PreviewItem[] }) {
+interface RealEstatePreviewProps {
+  items: PreviewItem[];
+}
+
+export default function RealEstatePreview({ items }: RealEstatePreviewProps) {
   const { t } = useTranslation();
 
   return (

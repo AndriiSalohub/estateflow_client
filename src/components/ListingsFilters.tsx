@@ -5,7 +5,7 @@ import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Menu } from "lucide-react";
 import { useFilterStore } from "@/store/filterStore";
-import { usePropertiesStore } from "@/store/usePropertiesStore";
+import { usePropertiesStore } from "@/store/propertiesStore";
 
 export default function ListingsFilters() {
   const {

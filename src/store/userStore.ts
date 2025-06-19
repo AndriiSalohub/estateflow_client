@@ -1,49 +1,9 @@
 import { create } from "zustand";
+import { $api, API_URL } from "@/api/BaseUrl";
 import type { AxiosError } from "axios";
-import { $api } from "@/api/BaseUrl";
+import type { UserStore } from "@/types/userTypes";
 
-export type UserRole =
-  | "renter_buyer"
-  | "private_seller"
-  | "agency"
-  | "moderator"
-  | "admin";
-
-export interface CurrentUser {
-  userId: string;
-  email: string;
-  username: string;
-  role: UserRole;
-  isEmailVerified: boolean;
-  avatarUrl?: string;
-  bio?: string;
-  createdAt: string;
-  updatedAt: string;
-  paypalCredentials?: string;
-}
-
-interface UserState {
-  user: CurrentUser | null;
-  isLoading: boolean;
-  error: string | null;
-  fetchUser: () => Promise<void>;
-  updateProfile: (data: {
-    username: string;
-    avatarUrl?: string;
-    bio?: string;
-    paypalCredentials?: string;
-  }) => Promise<void>;
-  requestEmailChange: (newEmail: string) => Promise<void>;
-  confirmEmailChange: (token: string) => Promise<void>;
-  requestPasswordChange: (newPassword: string) => Promise<void>;
-  confirmPasswordChange: (token: string) => Promise<void>;
-  clearError: () => void;
-  setUser: (user: CurrentUser | null) => void;
-}
-
-const API_URL = import.meta.env.VITE_API_URL;
-
-export const useUserStore = create<UserState>((set, get) => ({
+export const useUserStore = create<UserStore>((set, get) => ({
   user: null,
   isLoading: false,
   error: null,

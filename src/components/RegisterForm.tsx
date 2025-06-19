@@ -14,8 +14,9 @@ import {
 import { useAuthStore } from "@/store/authStore";
 import { toast } from "sonner";
 import GoogleLogin from "./GoogleLogin";
-import { useUserStore, type UserRole } from "@/store/userStore";
+import { useUserStore } from "@/store/userStore";
 import { useTranslation } from "react-i18next";
+import type { UserRole } from "@/types/userTypes";
 
 export default function RegisterForm() {
   const { t } = useTranslation();

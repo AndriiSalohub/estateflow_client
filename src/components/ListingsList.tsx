@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
-import { usePropertiesStore } from "@/store/usePropertiesStore";
+import { usePropertiesStore } from "@/store/propertiesStore";
 import { useFilterStore } from "@/store/filterStore";
-import ListingCard from "./ListingsCard";
+import ListingCard from "./ListingCard";
 import {
   Pagination,
   PaginationContent,
@@ -16,7 +16,7 @@ import Skeleton from "./Skeleton";
 
 export default function ListingsList() {
   const { t } = useTranslation();
-  const { properties, loading, error, fetchChouse } = usePropertiesStore();
+  const { properties, loading, error, fetchAll } = usePropertiesStore();
   const { price, area, rooms, types, propertyTypes, searchQuery, sortBy } =
     useFilterStore();
 
@@ -25,9 +25,9 @@ export default function ListingsList() {
 
   useEffect(() => {
     if (properties.length === 0) {
-      fetchChouse("active");
+      fetchAll("active");
     }
-  }, [properties.length, fetchChouse]);
+  }, [properties.length, fetchAll]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -139,6 +139,7 @@ export default function ListingsList() {
     return <Skeleton />;
   }
   if (error) return <div className="p-4 text-red-500">{error}</div>;
+
   return (
     <div className="space-y-6">
       {filteredProperties.length > 0 && (

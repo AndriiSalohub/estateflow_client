@@ -1,28 +1,9 @@
 import { create } from "zustand";
-import type { AxiosError } from "axios";
-import { $api } from "@/api/BaseUrl";
-import { useUserStore, type UserRole } from "./userStore";
+import { $api, API_URL } from "@/api/BaseUrl";
 import uuid from "react-uuid";
-
-interface AuthStore {
-  isLoading: boolean;
-  error: string | null;
-  isAuthenticated: boolean;
-  isInitialized: boolean;
-  register: (data: {
-    username: string;
-    email: string;
-    password: string;
-    role: UserRole;
-  }) => Promise<void>;
-  login: (email: string, password: string) => Promise<void>;
-  googleLogin: (code: string, role?: string) => Promise<{ message: string }>;
-  checkAuth: () => Promise<void>;
-  logout: () => void;
-  clearError: () => void;
-}
-
-const API_URL = import.meta.env.VITE_API_URL;
+import { useUserStore } from "./userStore";
+import type { AxiosError } from "axios";
+import type { AuthStore } from "@/types/authTypes";
 
 export const useAuthStore = create<AuthStore>((set, get) => ({
   isLoading: false,

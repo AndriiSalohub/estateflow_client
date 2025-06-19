@@ -9,8 +9,7 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
-import type { CreateProperty, Property } from "@/lib/types";
-import { createProperty, updateProperty } from "@/api/properties";
+import type { CreateProperty } from "@/lib/types";
 import {
   FACILITY_OPTIONS,
   transactionTypeOptions,
@@ -19,7 +18,7 @@ import {
   statusOptions,
 } from "@/lib/types";
 import { toast } from "sonner";
-import { usePropertiesStore } from "@/store/usePropertiesStore";
+import { usePropertiesStore } from "@/store/propertiesStore";
 import {
   Select,
   SelectTrigger,
@@ -38,16 +37,20 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { useTranslation } from "react-i18next";
+import type { Property } from "@/types/propertiesTypes";
+
+interface UpdateListingProps {
+  ownerId: string;
+  propertyToEdit?: Property;
+  onFinish?: () => void;
+}
 
 export default function UpdateListing({
   ownerId,
   propertyToEdit,
   onFinish,
-}: {
-  ownerId: string;
-  propertyToEdit?: Property;
-  onFinish?: () => void;
-}) {
+}: UpdateListingProps) {
+  const { createProperty, updateProperty } = usePropertiesStore();
   const normalizeFacilityKey = (facility: string) =>
     facility.toLowerCase().replace(/[\s/-]/g, "_");
   const { t } = useTranslation();
