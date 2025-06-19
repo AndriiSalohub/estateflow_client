@@ -13,7 +13,7 @@ Welcome to the **EstateFlow Client** repository! This is the frontend component 
 
 ## Overview
 
-EstateFlow is an innovative real estate platform that leverages AI to deliver personalized property recommendations, simplify property management, and facilitate secure transactions. The client-side application, hosted at [https://estateflow-beryl.vercel.app](https://estateflow-beryl.vercel.app), provides a responsive and user-friendly interface for interacting with the platform's features, powered by a RESTful API from the [EstateFlow Server](https://github.com/EstateFlow/server).
+EstateFlow is an innovative real estate platform that leverages AI to deliver personalized property recommendations, simplify property management, and facilitate secure transactions. The client-side application, hosted at [https://estateflow-client.vercel.app](https://estateflow-client.vercel.app), provides a responsive and user-friendly interface for interacting with the platform's features, powered by a RESTful API from the [EstateFlow Server](https://github.com/AndriiSalohub/estateflow_server).
 
 ## Features
 
@@ -64,7 +64,7 @@ Ensure your code follows the project's coding standards and includes tests.
 
 ## Links
 
-- **Live Demo**: [https://estateflow-beryl.vercel.app](https://estateflow-beryl.vercel.app)
-- **API Documentation**: [https://server-rbdb.onrender.com/api-docs/](https://server-rbdb.onrender.com/api-docs/)
-- **Server Repository**: [https://github.com/EstateFlow/server](https://github.com/EstateFlow/server)
-- **Report Issues**: [https://github.com/EstateFlow/client/issues](https://github.com/EstateFlow/client/issues)
+- **Live Demo**: [https://estateflow-client.vercel.app](https://estateflow-client.vercel.app)
+- **API Documentation**: [https://estateflow-server.onrender.com/api-docs]()
+- **Server Repository**: [https://github.com/AndriiSalohub/estateflow_server](https://github.com/AndriiSalohub/estateflow_server)
+- **Report Issues**: [https://github.com/AndriiSalohub/estateflow_client/issues](https://github.com/AndriiSalohub/estateflow_client/issues)

@@ -83,12 +83,6 @@ export const usePropertiesStore = create<PropertiesStore>((set, get) => ({
   },
 
   fetchProperties: async (filter, isVerified) => {
-    if (filter) {
-      throw new Error(
-        "Invalid filter parameter. Use 'active', 'sold_rented', 'inactive', or omit for all properties.",
-      );
-    }
-
     try {
       const params: any = {};
       if (filter) params.filter = filter;
