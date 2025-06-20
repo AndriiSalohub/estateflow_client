@@ -27,7 +27,7 @@ export default function ListingsList() {
     if (properties.length === 0) {
       fetchAll("active");
     }
-  }, [properties.length, fetchAll]);
+  }, [properties.length]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -141,7 +141,7 @@ export default function ListingsList() {
   if (error) return <div className="p-4 text-red-500">{error}</div>;
 
   return (
-    <div className="space-y-6">
+    <div>
       {filteredProperties.length > 0 && (
         <div className="px-4 text-sm text-muted-foreground">
           {t("showing")} {startIndex + 1}-
@@ -149,7 +149,7 @@ export default function ListingsList() {
           {filteredProperties.length} {t("properties")}
         </div>
       )}
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 p-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 px-4 py-2">
         {currentProperties.map((property) => (
           <ListingCard key={property.id} property={property} />
         ))}
