@@ -26,9 +26,9 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
   const normalizeFacilityKey = (facility: string) =>
     facility.toLowerCase().replace(/[\s/-]/g, "_");
   const { t } = useTranslation();
-  const { selectedProperty, fetchById, loading, error } = usePropertiesStore();
-  const { wishlist, loadWishlist, addProperty, removeProperty } =
-    useWishlistStore();
+  const { selectedProperty, fetchById, loading, error, fetchAll } =
+    usePropertiesStore();
+  const { loadWishlist, addProperty, removeProperty } = useWishlistStore();
   const { isAuthenticated } = useAuthStore();
   const { user } = useUserStore();
   const navigate = useNavigate();
@@ -36,10 +36,17 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
   const [activeImage, setActiveImage] = useState("");
   const [showShareOptions, setShowShareOptions] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
+  const [isWished, setIsWished] = useState(false);
 
   useEffect(() => {
     fetchById(propertyId);
   }, [propertyId]);
+
+  useEffect(() => {
+    if (selectedProperty) {
+      setIsWished(selectedProperty?.isWished);
+    }
+  }, [selectedProperty]);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -99,8 +106,6 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
     );
   if (!selectedProperty) return <p>{t("noPropertiesFound")}</p>;
 
-  const isWished = wishlist.some((p) => p.id === propertyId);
-
   const handleToggleWishlist = () => {
     if (isAdding) {
       return;
@@ -119,11 +124,13 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
     }
 
     if (isWished) {
+      setIsWished(false);
       removeProperty(propertyId);
       return;
     }
 
     setIsAdding(true);
+    setIsWished(true);
     addProperty(propertyId)
       .then(() => setIsAdding(false))
       .catch((err) => {
@@ -195,6 +202,7 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
         },
       );
       toast.success(t("success"), { description: t("paymentSuccessful") });
+      await fetchAll("active");
       navigate({ to: "/complete-payment" });
     } catch (error) {
       toast.error(t("failedToCapturePayment"));
