@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
-import { usePropertiesStore } from "@/store/propertiesStore";
-import { useFilterStore } from "@/store/filterStore";
-import ListingCard from "./ListingCard";
+import { useEffect, useMemo, useState } from 'react';
+import { usePropertiesStore } from '@/store/propertiesStore';
+import { useFilterStore } from '@/store/filterStore';
+import ListingCard from './ListingCard';
 import {
   Pagination,
   PaginationContent,
@@ -10,9 +10,10 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination";
-import { useTranslation } from "react-i18next";
-import Skeleton from "./Skeleton";
+} from '@/components/ui/pagination';
+import { useTranslation } from 'react-i18next';
+import Skeleton from './Skeleton';
+import { Hotel } from 'lucide-react';
 
 export default function ListingsList() {
   const { t } = useTranslation();
@@ -25,7 +26,7 @@ export default function ListingsList() {
 
   useEffect(() => {
     if (properties.length === 0) {
-      fetchAll("active");
+      fetchAll('active');
     }
   }, [properties.length]);
 
@@ -50,7 +51,7 @@ export default function ListingsList() {
         return false;
       if (
         propertyTypes.length > 0 &&
-        !propertyTypes.includes(property.propertyType?.toLowerCase() || "")
+        !propertyTypes.includes(property.propertyType?.toLowerCase() || '')
       )
         return false;
 
@@ -62,14 +63,14 @@ export default function ListingsList() {
       return true;
     });
 
-    if (sortBy === "newest") {
+    if (sortBy === 'newest') {
       result = [...result].sort(
         (a, b) =>
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
       );
-    } else if (sortBy === "expensive") {
+    } else if (sortBy === 'expensive') {
       result = [...result].sort((a, b) => Number(b.price) - Number(a.price));
-    } else if (sortBy === "cheap") {
+    } else if (sortBy === 'cheap') {
       result = [...result].sort((a, b) => Number(a.price) - Number(b.price));
     }
 
@@ -111,7 +112,7 @@ export default function ListingsList() {
     }
 
     if (currentPage > delta + 2) {
-      pages.push("ellipsis-start");
+      pages.push('ellipsis-start');
     }
 
     for (
@@ -125,7 +126,7 @@ export default function ListingsList() {
     }
 
     if (currentPage < totalPages - delta - 1) {
-      pages.push("ellipsis-end");
+      pages.push('ellipsis-end');
     }
 
     if (totalPages > 1) {
@@ -138,15 +139,30 @@ export default function ListingsList() {
   if (loading) {
     return <Skeleton />;
   }
-  if (error) return <div className="p-4 text-red-500">{error}</div>;
+
+  if (error) {
+    return <div className="p-4 text-red-500">{error}</div>;
+  }
+
+  if (!loading && properties.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-24 px-4 text-center">
+        <Hotel className="text-muted-foreground h-24 w-24 mb-3" />
+        <h3 className="text-xl font-semibold mb-2">{t('noProperties')}</h3>
+        <p className="text-muted-foreground max-w-sm">
+          {t('noPropertiesDescription')}
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div>
       {filteredProperties.length > 0 && (
         <div className="px-4 text-sm text-muted-foreground">
-          {t("showing")} {startIndex + 1}-
-          {Math.min(endIndex, filteredProperties.length)} {t("of")}{" "}
-          {filteredProperties.length} {t("properties")}
+          {t('showing')} {startIndex + 1}-
+          {Math.min(endIndex, filteredProperties.length)} {t('of')}{' '}
+          {filteredProperties.length} {t('properties')}
         </div>
       )}
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 px-4 py-2">
@@ -156,7 +172,7 @@ export default function ListingsList() {
 
         {filteredProperties.length === 0 && properties.length > 0 && (
           <div className="col-span-full text-center p-8 text-muted-foreground">
-            {t("noListings")}
+            {t('noListings')}
           </div>
         )}
       </div>
@@ -170,15 +186,15 @@ export default function ListingsList() {
                   onClick={goToPrevious}
                   className={
                     currentPage === 1
-                      ? "pointer-events-none opacity-50"
-                      : "cursor-pointer"
+                      ? 'pointer-events-none opacity-50'
+                      : 'cursor-pointer'
                   }
                 />
               </PaginationItem>
 
               {getVisiblePages().map((page, index) => (
                 <PaginationItem key={`${page}-${index}`}>
-                  {page === "ellipsis-start" || page === "ellipsis-end" ? (
+                  {page === 'ellipsis-start' || page === 'ellipsis-end' ? (
                     <PaginationEllipsis />
                   ) : (
                     <PaginationLink
@@ -197,8 +213,8 @@ export default function ListingsList() {
                   onClick={goToNext}
                   className={
                     currentPage === totalPages
-                      ? "pointer-events-none opacity-50"
-                      : "cursor-pointer"
+                      ? 'pointer-events-none opacity-50'
+                      : 'cursor-pointer'
                   }
                 />
               </PaginationItem>

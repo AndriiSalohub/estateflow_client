@@ -3,20 +3,20 @@ import {
   CardContent,
   CardDescription,
   CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { Share2, Heart, HeartOff, Eye } from "lucide-react";
-import { Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { usePropertiesStore } from "@/store/propertiesStore";
-import { useWishlistStore } from "@/store/wishlistStore";
-import { useAuthStore } from "@/store/authStore";
-import { toast } from "sonner";
-import { useUserStore } from "@/store/userStore";
-import { PayPalButtons } from "@paypal/react-paypal-js";
-import { $api } from "@/api/BaseUrl";
-import { useTranslation } from "react-i18next";
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import { Share2, Heart, HeartOff, Eye } from 'lucide-react';
+import { Link, useNavigate } from '@tanstack/react-router';
+import { useEffect, useState } from 'react';
+import { usePropertiesStore } from '@/store/propertiesStore';
+import { useWishlistStore } from '@/store/wishlistStore';
+import { useAuthStore } from '@/store/authStore';
+import { toast } from 'sonner';
+import { useUserStore } from '@/store/userStore';
+import { PayPalButtons } from '@paypal/react-paypal-js';
+import { $api } from '@/api/BaseUrl';
+import { useTranslation } from 'react-i18next';
 
 interface ListingFormProps {
   propertyId: string;
@@ -24,7 +24,7 @@ interface ListingFormProps {
 
 export default function ListingForm({ propertyId }: ListingFormProps) {
   const normalizeFacilityKey = (facility: string) =>
-    facility.toLowerCase().replace(/[\s/-]/g, "_");
+    facility.toLowerCase().replace(/[\s/-]/g, '_');
   const { t } = useTranslation();
   const { selectedProperty, fetchById, loading, error, fetchAll } =
     usePropertiesStore();
@@ -33,7 +33,7 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
   const { user } = useUserStore();
   const navigate = useNavigate();
 
-  const [activeImage, setActiveImage] = useState("");
+  const [activeImage, setActiveImage] = useState('');
   const [showShareOptions, setShowShareOptions] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
   const [isWished, setIsWished] = useState(false);
@@ -101,10 +101,10 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
   if (error)
     return (
       <p>
-        {t("error")}: {error}
+        {t('error')}: {error}
       </p>
     );
-  if (!selectedProperty) return <p>{t("noPropertiesFound")}</p>;
+  if (!selectedProperty) return <p>{t('noPropertiesFound')}</p>;
 
   const handleToggleWishlist = () => {
     if (isAdding) {
@@ -112,13 +112,13 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
     }
 
     if (!isAuthenticated) {
-      toast.error(t("loginRequired"), { description: t("loginPrompt") });
+      toast.error(t('loginRequired'), { description: t('loginPrompt') });
       return;
     }
 
-    if (user?.role !== "renter_buyer") {
-      toast.error(t("accessRestricted"), {
-        description: t("buyerRoleRequired"),
+    if (user?.role !== 'renter_buyer') {
+      toast.error(t('accessRestricted'), {
+        description: t('buyerRoleRequired'),
       });
       return;
     }
@@ -137,34 +137,34 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
         setIsAdding(false);
 
         if (err?.response?.status !== 409) {
-          toast.error(t("failedToAddWishlist"));
+          toast.error(t('failedToAddWishlist'));
         }
       });
   };
 
   const facilities =
     selectedProperty.facilities
-      ?.split(",")
+      ?.split(',')
       .map((f) => f.trim())
       .filter(Boolean) || [];
 
   const styles = {
-    color: "black" as const,
-    layout: "vertical" as const,
-    size: "medium" as const,
-    label: "pay" as const,
+    color: 'black' as const,
+    layout: 'vertical' as const,
+    size: 'medium' as const,
+    label: 'pay' as const,
   };
 
   const onCreateOrder = async () => {
     try {
       const price = parseFloat(selectedProperty.price);
       if (isNaN(price)) {
-        toast.error(t("invalidPriceFormat"));
-        throw new Error("Invalid price format");
+        toast.error(t('invalidPriceFormat'));
+        throw new Error('Invalid price format');
       }
 
       const amount =
-        selectedProperty.transactionType === "sale"
+        selectedProperty.transactionType === 'sale'
           ? (price * 0.1).toFixed(2)
           : price.toFixed(2);
 
@@ -177,19 +177,19 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
             description: selectedProperty.description,
             sku: selectedProperty.id,
           },
-        },
+        }
       );
       return response.data.id;
     } catch (error) {
-      toast.error(t("failedToCreateOrder"));
-      throw new Error("Failed to create PayPal order");
+      toast.error(t('failedToCreateOrder'));
+      throw new Error('Failed to create PayPal order');
     }
   };
 
   const onApprove = async (data: any) => {
     try {
       if (!data?.orderID) {
-        toast.error(t("invalidOrderId"));
+        toast.error(t('invalidOrderId'));
         return;
       }
 
@@ -199,19 +199,19 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
           orderId: data?.orderID,
           propertyId: selectedProperty.id,
           email: user?.email,
-        },
+        }
       );
-      toast.success(t("success"), { description: t("paymentSuccessful") });
-      await fetchAll("active");
-      navigate({ to: "/complete-payment" });
+      toast.success(t('success'), { description: t('paymentSuccessful') });
+      await fetchAll('active');
+      navigate({ to: '/complete-payment' });
     } catch (error) {
-      toast.error(t("failedToCapturePayment"));
+      toast.error(t('failedToCapturePayment'));
     }
   };
 
   const onError = async () => {
-    toast.error(t("failedToCapturePayment"));
-    navigate({ to: "/cancel-payment" });
+    toast.error(t('failedToCapturePayment'));
+    navigate({ to: '/cancel-payment' });
   };
 
   const getShareUrl = () => {
@@ -235,15 +235,15 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
         await navigator.share(shareData);
         setShowShareOptions(false);
       } catch (err) {
-        toast.error(t("copyLinkFailed"));
+        toast.error(t('copyLinkFailed'));
       }
     } else {
       try {
         await navigator.clipboard.writeText(shareUrl);
-        toast.success(t("success"), { description: t("linkCopied") });
+        toast.success(t('success'), { description: t('linkCopied') });
         setShowShareOptions(false);
       } catch (err) {
-        console.log("Copying failed:", err);
+        console.log('Copying failed:', err);
       }
     }
   };
@@ -252,7 +252,7 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
     const shareText = getShareText();
     const shareUrl = getShareUrl();
     const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`;
-    window.open(telegramUrl, "_blank", "noopener,noreferrer");
+    window.open(telegramUrl, '_blank', 'noopener,noreferrer');
     setShowShareOptions(false);
   };
 
@@ -260,7 +260,7 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
     const shareText = getShareText();
     const shareUrl = getShareUrl();
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
-    window.open(twitterUrl, "_blank", "noopener,noreferrer");
+    window.open(twitterUrl, '_blank', 'noopener,noreferrer');
     setShowShareOptions(false);
   };
 
@@ -269,7 +269,7 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
       <div className="grid md:grid-cols-2 gap-6">
         <div className="flex flex-col gap-2 relative">
           <img
-            src={activeImage || "/path"}
+            src={activeImage || '/path'}
             alt={selectedProperty.title}
             className="w-full h-[400px] rounded-2xl object-cover"
           />
@@ -277,15 +277,15 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
           <div className="absolute top-3 left-3 flex gap-2">
             <span className="flex gap-1 px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">
               <Eye className="w-4 h-4" />
-              {selectedProperty.views.length}{" "}
-              {selectedProperty.views.length === 1 ? "view" : "views"}
+              {selectedProperty.views.length}{' '}
+              {selectedProperty.views.length === 1 ? 'view' : 'views'}
             </span>
           </div>
           <div className="flex gap-2 overflow-x-auto">
             {selectedProperty.images
               .filter(
                 (img, index, self) =>
-                  index === self.findIndex((i) => i.imageUrl === img.imageUrl),
+                  index === self.findIndex((i) => i.imageUrl === img.imageUrl)
               )
               .map((img) => (
                 <img
@@ -294,8 +294,8 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
                   alt="thumbnail"
                   className={`w-20 h-20 rounded-lg object-cover cursor-pointer border-2 ${
                     activeImage === img.imageUrl
-                      ? "border-black"
-                      : "border-transparent"
+                      ? 'border-black'
+                      : 'border-transparent'
                   }`}
                   onClick={() => setActiveImage(img.imageUrl)}
                 />
@@ -306,7 +306,7 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
         <div className="flex flex-col gap-4">
           <Card className="relative">
             <Button
-              variant={isWished ? "destructive" : "outline"}
+              variant={isWished ? 'destructive' : 'outline'}
               onClick={handleToggleWishlist}
               className="absolute top-4 right-4 z-10"
               size="sm"
@@ -329,8 +329,8 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
               </CardTitle>
               <CardDescription>{selectedProperty.address}</CardDescription>
               <div className="text-sm text-muted-foreground">
-                {t("area")}: {selectedProperty.size} | {selectedProperty.rooms}{" "}
-                {t("rooms")}
+                {t('area')}: {selectedProperty.size} | {selectedProperty.rooms}{' '}
+                {t('rooms')}
               </div>
               <p className="text-sm leading-relaxed">
                 {selectedProperty.description}
@@ -342,7 +342,7 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
                   search={{ userId: selectedProperty.ownerId }}
                   className="[&.active]:underline"
                 >
-                  <Button variant="secondary">{t("viewSellersProfile")}</Button>
+                  <Button variant="secondary">{t('viewSellersProfile')}</Button>
                 </Link>
 
                 <div className="relative">
@@ -351,7 +351,7 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
                     onClick={() => setShowShareOptions(!showShareOptions)}
                   >
                     <Share2 className="w-4 h-4 mr-1" />
-                    {t("share")}
+                    {t('share')}
                   </Button>
 
                   {showShareOptions && (
@@ -370,7 +370,7 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
                           >
                             <path d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.787l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z" />
                           </svg>
-                          {t("shareOnTelegram")}
+                          {t('shareOnTelegram')}
                         </Button>
 
                         <Button
@@ -386,7 +386,7 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
                           >
                             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                           </svg>
-                          {t("shareOnX")}
+                          {t('shareOnX')}
                         </Button>
 
                         {!navigator.share && (
@@ -396,7 +396,7 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
                             onClick={handleNativeShare}
                             className="justify-start"
                           >
-                            📋 {t("copyLink")}
+                            📋 {t('copyLink')}
                           </Button>
                         )}
                       </div>
@@ -421,7 +421,7 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
       <div className="grid md:grid-cols-2 gap-6 items-start">
         <div>
           <h2 className="text-lg font-semibold mb-2">
-            {t("whereYouWillLive")}:
+            {t('whereYouWillLive')}:
           </h2>
           <iframe
             width="100%"
@@ -431,22 +431,24 @@ export default function ListingForm({ propertyId }: ListingFormProps) {
             allowFullScreen
             referrerPolicy="no-referrer-when-downgrade"
             src={`https://maps.google.com/maps?q=${encodeURIComponent(selectedProperty.address)}&z=15&output=embed`}
-            onError={() => console.log("Map failed to load")}
+            onError={() => console.log('Map failed to load')}
           ></iframe>
         </div>
 
         <div>
-          <h2 className="text-lg font-semibold mb-2">{t("facilities")}:</h2>
+          <h2 className="text-lg font-semibold mb-2">{t('facilities')}:</h2>
           <ul className="grid grid-cols-2 gap-1 text-sm text-muted-foreground">
-            {facilities.map((facility) => (
-              <li key={facility}>
-                {t(`facilitiesList.${normalizeFacilityKey(facility)}`)}
-              </li>
-            ))}
+            {facilities.map((facility) => {
+              return (
+                <li key={facility}>
+                  {t(`facilitiesList.${normalizeFacilityKey(facility)}`)}
+                </li>
+              );
+            })}
           </ul>
           {user &&
-          user.role === "renter_buyer" &&
-          selectedProperty.status === "active" ? (
+          user.role === 'renter_buyer' &&
+          selectedProperty.status === 'active' ? (
             <PayPalButtons
               createOrder={onCreateOrder}
               onApprove={onApprove}
