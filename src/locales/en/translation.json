@@ -154,7 +154,7 @@
   "deleteUserDescriptionPart2": "This action cannot be undone and will remove all associated data.",
   "deleting": "Deleting...",
   "deleteUser": "Delete User",
-  "edit":"Edit",
+  "edit": "Edit",
   "userManagementRestricted": "User management restricted",
   "noUsersAvailable": "No users available.",
   "statisticsTitle": "Statistics Dashboard",
@@ -339,12 +339,12 @@
   "loggedOutSuccessfully": "Logged out successfully",
   "typeYourMessage": "Type your message...",
   "loadingConversation": "Loading conversation...",
-    "facilitiesList": {
+  "facilitiesList": {
     "heating": "Heating",
-    "air_conditioning___conditioner": "Air conditioning / Conditioner",
+    "air_conditioning": "Air conditioning / Conditioner",
     "hot_water": "Hot water",
     "gas_supply": "Gas supply",
-    "wi_fi": "Wi-Fi",
+    "wifi": "Wi-Fi",
     "cable_tv": "Cable TV",
     "smart_tv": "Smart TV",
     "intercom": "Intercom",
@@ -376,10 +376,19 @@
     "garage": "Garage",
     "storage_room": "Storage room",
     "wheelchair_accessible": "Wheelchair accessible",
-    "smoking_allowed": "Smoking allowed"
+    "smoking_allowed": "Smoking allowed",
+    "garden": "Garden",
+    "barn": "Barn",
+    "dock": "Dock",
+    "fireplace": "Fireplace",
+    "solar_panels": "Solar Panels",
+    "laundry": "Laundry",
+    "pool": "Pool"
   },
-  "addNewListing":"Add new listing",
-  "forMoreExtendToAgency":"For more, extend to agency",
-  "listingsUserMagementPage" : "Listings:"
-
+  "addNewListing": "Add new listing",
+  "forMoreExtendToAgency": "For more, extend to agency",
+  "listingsUserMagementPage": "Listings:",
+  "noProperties": "No listings yet",
+  "noPropertiesDescription": "There are no active listings at the moment. Check back later.",
+  "notAvailable": "N/A"
 }

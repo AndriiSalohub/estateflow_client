@@ -154,7 +154,7 @@
   "deleteUserDescriptionPart2": "Цю дію не можна скасувати, і всі пов’язані дані буде видалено.",
   "deleting": "Видалення...",
   "deleteUser": "Видалити користувача",
-  "edit":"Редаг.",
+  "edit": "Редаг.",
   "userManagementRestricted": "Керування користувачами обмежено",
   "statisticsTitle": "Панель статистики",
   "statisticsDescription": "Відстежуйте продуктивність і аналітику вашої платформи нерухомості",
@@ -342,10 +342,10 @@
   "loadingConversation": "Завантаження бесіди...",
   "facilitiesList": {
     "heating": "Опалення",
-    "air_conditioning___conditioner": "Кондиціонер",
+    "air_conditioning": "Кондиціонер",
     "hot_water": "Гаряча вода",
     "gas_supply": "Газопостачання",
-    "wi_fi": "Wi-Fi",
+    "wifi": "Wi-Fi",
     "cable_tv": "Кабельне ТБ",
     "smart_tv": "Smart TV",
     "intercom": "Домофон",
@@ -377,9 +377,19 @@
     "garage": "Гараж",
     "storage_room": "Комора",
     "wheelchair_accessible": "Доступно для інвалідних візків",
-    "smoking_allowed": "Дозволено курити"
+    "smoking_allowed": "Дозволено курити",
+    "garden": "Сад",
+    "barn": "Комора",
+    "dock": "Причал",
+    "fireplace": "Камін",
+    "solar_panels": "Сонячні панелі",
+    "laundry": "Пральня",
+    "pool": "Басейн"
   },
-  "addNewListing":"Додати нове оголошення",
-  "forMoreExtendToAgency":"Щоб додати більше, розширте до агентства",
-  "listingsUserMagementPage" : "Оголошення:"
+  "addNewListing": "Додати нове оголошення",
+  "forMoreExtendToAgency": "Щоб додати більше, розширте до агентства",
+  "listingsUserMagementPage": "Оголошення:",
+  "noProperties": "Оголошень поки немає",
+  "noPropertiesDescription": "Схоже, що активних оголошень ще немає. Поверніться пізніше.",
+  "notAvailable": "N/A"
 }
